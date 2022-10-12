@@ -7,16 +7,23 @@ from datetime import datetime
 class BaseModel():
     """ BaseModel class """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Constructor for BaseModel
             Public attributes:
                 -id: unique number assigned to created instance
                 -created_at: date and time when an the instance is created
                 -updated_at: update date and time if the instance changes
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            for k, v in kwargs.items():
+                if k != '__class__':
+                    self.setattr(k, v)
+                self.created_at = datetime(self.created_at)
+                self.updated_at = datetime(self.updated_at)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """ __str__ method customized """
