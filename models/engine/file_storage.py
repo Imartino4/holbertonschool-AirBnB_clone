@@ -17,7 +17,7 @@ class FileStorage():
     def new(self, obj):
         """ This method update __objects """
         name = f"{obj.__class__.__name__}.{obj.id}"
-        FileStorage.__objects[name] = obj
+        self.__objects[name] = obj.to_dict()
 
     def save(self):
         """ This method serialize an object to JSON file"""
@@ -28,4 +28,6 @@ class FileStorage():
         """ This method deserializes an Json file to an object """
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r') as file:
-                self.__objects = json.loads(file.read())
+                check_empty = file.read()
+                if len(check_empty) > 0:
+                    self.__objects = json.loads(check_empty)
