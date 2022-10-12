@@ -14,7 +14,7 @@ class BaseModel():
                 -created_at: date and time when an the instance is created
                 -updated_at: update date and time if the instance changes
         """
-        self.id = uuid.uuid4()
+        self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
