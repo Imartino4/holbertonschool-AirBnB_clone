@@ -3,7 +3,6 @@
     for AirBnB clone console """
 import uuid
 from datetime import datetime
-from models.__init__ import storage
 
 
 class BaseModel():
@@ -23,6 +22,7 @@ class BaseModel():
                 self.created_at = datetime.fromisoformat(kwargs['created_at'])
                 self.updated_at = datetime.fromisoformat(kwargs['updated_at'])
         else:
+            from models.__init__ import storage
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
@@ -34,6 +34,7 @@ class BaseModel():
 
     def save(self):
         """ Update the 'update_at' attribute with current datetime """
+        from models.__init__ import storage
         storage.save()
         self.updated_at = datetime.now()
 
