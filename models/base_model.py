@@ -17,9 +17,9 @@ class BaseModel():
         if kwargs:
             for k, v in kwargs.items():
                 if k != '__class__':
-                    self.setattr(k, v)
-                self.created_at = datetime(self.created_at)
-                self.updated_at = datetime(self.updated_at)
+                    setattr(self, k, v)
+                self.created_at = datetime.fromisoformat(kwargs['created_at'])
+                self.updated_at = datetime.fromisoformat(kwargs['updated_at'])
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
