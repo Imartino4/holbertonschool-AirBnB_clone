@@ -35,8 +35,9 @@ class BaseModel():
     def save(self):
         """ Update the 'update_at' attribute with current datetime """
         from models.__init__ import storage
-        storage.save()
         self.updated_at = datetime.now()
+        storage.save()
+
 
     def to_dict(self):
         """ Returns a dictionary containing all k/v of __dict__, 
