@@ -12,7 +12,7 @@ class HBNBCommand(cmd.Cmd):
         raise SystemExit
 
     def do_EOF(self, arg):
-        """ Exits program on EOF """
+        """ Exits program on EOF. """
         raise SystemExit
 
     def emptyline(self):
