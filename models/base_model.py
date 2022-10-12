@@ -41,10 +41,11 @@ class BaseModel():
         """ Returns a dictionary containing all k/v of __dict__, 
             a key __class__ with corresponding value is added and
             the datetime format must be %Y-%m-%dT%H:%M:%S.%f """
-        for k in self.__dict__.keys():
+        new_dict = self.__dict__.copy()
+        for k, v in new_dict.items():
             if k == 'created_at':
-                self.__dict__[k] = self.created_at.isoformat()
+                new_dict[k] = self.created_at.isoformat()
             if k == 'updated_at':
-                self.__dict__[k] = self.updated_at.isoformat()
-        self.__dict__['__class__'] = __class__.__name__
-        return self.__dict__
+                new_dict[k] = self.updated_at.isoformat()
+        new_dict['__class__'] = __class__.__name__
+        return new_dict
