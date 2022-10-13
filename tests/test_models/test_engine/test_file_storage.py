@@ -43,7 +43,7 @@ class TestFileStorage(unittest.TestCase):
     def test_reload(self):
         amount_objs = len(storage.all())
         storage.reload()
-        self.assertEqual(amount_objs, len(storage.all()))
+        self.assertTrue(amount_objs - len(storage.all()) == 0)
 
 if __name__ == '__main__':
     unittest.main()
