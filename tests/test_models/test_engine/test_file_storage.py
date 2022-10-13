@@ -16,6 +16,7 @@ class TestFileStorage(unittest.TestCase):
         except Exception:
             pass
         storage.reload()
+        storage.__objects.clear()
         self.obj1 = BaseModel()
         self.obj2 = BaseModel()
         storage.save()
