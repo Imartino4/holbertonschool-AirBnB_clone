@@ -29,7 +29,7 @@ class TestFileStorage(unittest.TestCase):
         storage.new(obj)
         self.assertTrue(obj in storage.all().values())
 
-    def test_save_reload(self):
+    def test_save(self):
         try:
             os.remove("file.json")
         except Exception:
@@ -39,6 +39,11 @@ class TestFileStorage(unittest.TestCase):
         obj2 = BaseModel()
         storage.save()
         self.assertTrue(os.path.exists("file.json"))
+
+    def test_reload(self):
+        amount_objs = len(storage.all())
+        storage.reload()
+        self.assertEqual(amount_objs, len(storage.all()))
 
 if __name__ == '__main__':
     unittest.main()
