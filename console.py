@@ -9,7 +9,7 @@ classes = {'BaseModel': BaseModel}
 
 def class_check(input_str):
     input = input_str.split()
-    if input[0] == '':
+    if len(input_str) == 0:
         print("** class name missing **")
         return False
     if input[0] not in classes.keys():
@@ -91,6 +91,6 @@ class HBNBCommand(cmd.Cmd):
                 obj = storage.all()[f"{args[0]}.{args[1]}"]
                 setattr(obj, args[2], args[3])
                 storage.save()
-
+                
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
