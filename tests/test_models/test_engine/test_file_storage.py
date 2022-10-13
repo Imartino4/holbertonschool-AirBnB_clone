@@ -21,7 +21,16 @@ class TestFileStorage(unittest.TestCase):
         storage.save()
 
     def test_all(self):
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
+        storage.reload()
+        self.obj1 = BaseModel()
+        self.obj2 = BaseModel()
+        storage.save()        
         amount_objs = len(storage.all())
+        print(amount_objs)
         self.assertEqual(amount_objs, 2)
 
     def test_new(self):
