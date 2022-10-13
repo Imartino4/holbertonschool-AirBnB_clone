@@ -21,7 +21,8 @@ class TestFileStorage(unittest.TestCase):
         storage.save()
 
     def test_all(self):
-        self.assertTrue(len(storage.all()) > 0)
+        amount = len(storage.all())
+        self.assertEqual(amount, 2)
 
     def test_new(self):
         obj = BaseModel()
