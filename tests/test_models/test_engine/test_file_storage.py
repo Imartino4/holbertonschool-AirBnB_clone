@@ -16,7 +16,6 @@ class TestFileStorage(unittest.TestCase):
         except Exception:
             pass
         storage.reload()
-        storage.__objects.clear()
         self.obj1 = BaseModel()
         self.obj2 = BaseModel()
         storage.save()
@@ -29,3 +28,6 @@ class TestFileStorage(unittest.TestCase):
         obj = BaseModel()
         storage.new(obj)
         self.assertTrue(obj in storage.all().values())
+
+if __name__ == '__main__':
+    unittest.main()
