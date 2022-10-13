@@ -1,13 +1,22 @@
 #!/usr/bin/python3
 """ Console Module """
 
-import cmd, shlex
+import cmd
+import shlex
 from models.base_model import BaseModel
 from models import user, state, city, amenity, place, review
 from models import storage
 
-classes = {'BaseModel': BaseModel, 'User': user.User, 'State': state.State, 'City': city.City,
-        'Amenity': amenity.Amenity, 'Place': place.Place, 'Review': review.Review}
+classes = {
+    'BaseModel': BaseModel,
+    'User': user.User,
+    'State': state.State,
+    'City': city.City,
+    'Amenity': amenity.Amenity,
+    'Place': place.Place,
+    'Review': review.Review
+    }
+
 
 def class_check(input_str):
     input = input_str.split()
@@ -18,6 +27,7 @@ def class_check(input_str):
         print("** class doesn't exist **")
         return False
     return True
+
 
 def id_check(input_str):
     input = input_str.split()
@@ -46,27 +56,43 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
+        """ Emptyline command  customized"""
         pass
 
     def do_create(self, arg):
+        """ Create new instance
+            Usage: create <class name>
+        """
         if class_check(arg):
             new_obj = classes[arg]()
             new_obj.save()
             print(new_obj.id)
 
     def do_show(self, arg):
+        """ Print the string representation of an instance
+            Usage: show <class name> <id>
+        """
         args = arg.split()
         if class_check(arg) and id_check(arg):
             objs = storage.all()
             print(objs[f"{args[0]}.{args[1]}"])
 
     def do_destroy(self, arg):
+        """
+            Delete an instance
+            Usage: destroy <class name> <id>
+        """
         args = arg.split()
         if class_check(arg) and id_check(arg):
             del storage.all()[f"{args[0]}.{args[1]}"]
             storage.save()
 
     def do_all(self, arg):
+        """
+            Print all instances with specific class or not
+            Usage: -all <class name>
+                   -all
+        """
         args = arg.split()
         objects = storage.all()
         list_obj = []
@@ -74,15 +100,19 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             for obj in objects.values():
                 list_obj.append(obj.__str__())
-            print (list_obj)
+            print(list_obj)
         if len(args) == 1:
             if class_check(arg):
                 for obj in objects.values():
                     if obj.__class__.__name__ == args[0]:
                         list_obj.append(obj.__str__())
                 print(list_obj)
-                    
+
     def do_update(self, arg):
+        """
+            Update an instance, adding new attribute or create one
+            Usage: update <class name> <id> <attribute> <value_attribute>
+        """
         args = shlex.split(arg)
         if class_check(arg) and id_check(arg):
             if len(args) == 2:
@@ -93,6 +123,7 @@ class HBNBCommand(cmd.Cmd):
                 obj = storage.all()[f"{args[0]}.{args[1]}"]
                 setattr(obj, args[2], args[3])
                 storage.save()
-                
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

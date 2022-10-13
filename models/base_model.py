@@ -25,7 +25,7 @@ class BaseModel():
             from models.__init__ import storage
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+            self.updated_at = self.created_at
             storage.new(self)
 
     def __str__(self):
@@ -38,9 +38,8 @@ class BaseModel():
         self.updated_at = datetime.now()
         storage.save()
 
-
     def to_dict(self):
-        """ Returns a dictionary containing all k/v of __dict__, 
+        """ Returns a dictionary containing all k/v of __dict__,
             a key __class__ with corresponding value is added and
             the datetime format must be %Y-%m-%dT%H:%M:%S.%f """
         new_dict = self.__dict__.copy()

@@ -5,8 +5,16 @@ import os
 from models.base_model import BaseModel
 from models import user, state, city, amenity, place, review
 
-classes = {'BaseModel': BaseModel, 'User': user.User, 'State': state.State, 'City': city.City,
-        'Amenity': amenity.Amenity, 'Place': place.Place, 'Review': review.Review}
+classes = {
+    'BaseModel': BaseModel,
+    'User': user.User,
+    'State': state.State,
+    'City': city.City,
+    'Amenity': amenity.Amenity,
+    'Place': place.Place,
+    'Review': review.Review
+    }
+
 
 class FileStorage():
     """ FileStorage class"""
@@ -30,7 +38,7 @@ class FileStorage():
             for k, v in self.__objects.items():
                 json_dict[k] = v.to_dict()
             file.write(json.dumps(json_dict))
-    
+
     def reload(self):
         """ This method deserializes an Json file to an object """
         if os.path.exists(self.__file_path):
