@@ -3,7 +3,10 @@
 
 import unittest
 from models.base_model import BaseModel
-import datetime, time, os
+import datetime
+import time
+import os
+
 
 class TestBase(unittest.TestCase):
     """ Tests on BaseModel class"""
