@@ -2,9 +2,11 @@
 """ This module contains FileStorage class """
 import json
 import os
+from models.base_model import BaseModel
+from models import user, state, city, amenity, place, review
 
-classes = {'BaseModel': BaseModel, 'State': State, 'City': City,
-        'Amenity': Amenity, 'Place': Place, 'Review': Review}
+classes = {'BaseModel': BaseModel, 'User': user.User, 'State': state.State, 'City': city.City,
+        'Amenity': amenity.Amenity, 'Place': place.Place, 'Review': review.Review}
 
 class FileStorage():
     """ FileStorage class"""
@@ -31,7 +33,6 @@ class FileStorage():
     
     def reload(self):
         """ This method deserializes an Json file to an object """
-        from ..base_model import BaseModel
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r') as file:
                 json_str = file.read()
@@ -39,4 +40,4 @@ class FileStorage():
                     json_dict = json.loads(json_str)
                     self.__objects.clear()
                     for k, obj_dict in json_dict.items():
-                        self.__objects[k] = BaseModel(**obj_dict)
+                        self.__objects[k] = classes[k[:-37]](**obj_dict)

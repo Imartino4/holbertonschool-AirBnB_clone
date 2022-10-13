@@ -3,10 +3,11 @@
 
 import cmd, shlex
 from models.base_model import BaseModel
+from models import user, state, city, amenity, place, review
 from models import storage
 
-classes = {'BaseModel': BaseModel, 'User': User, 'State': State,
-        'City': City, 'Amenity': Amenity, 'Place': Place, 'Review': Review}
+classes = {'BaseModel': BaseModel, 'User': user.User, 'State': state.State, 'City': city.City,
+        'Amenity': amenity.Amenity, 'Place': place.Place, 'Review': review.Review}
 
 def class_check(input_str):
     input = input_str.split()

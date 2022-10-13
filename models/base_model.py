@@ -30,7 +30,7 @@ class BaseModel():
 
     def __str__(self):
         """ __str__ method customized """
-        return(f"[{__class__.__name__}] ({self.id}) {self.__dict__}")
+        return(f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
 
     def save(self):
         """ Update the 'update_at' attribute with current datetime """
@@ -49,5 +49,5 @@ class BaseModel():
                 new_dict[k] = self.created_at.isoformat()
             if k == 'updated_at':
                 new_dict[k] = self.updated_at.isoformat()
-        new_dict['__class__'] = __class__.__name__
+        new_dict['__class__'] = self.__class__.__name__
         return new_dict
