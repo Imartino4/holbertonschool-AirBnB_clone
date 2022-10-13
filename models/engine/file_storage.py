@@ -34,5 +34,6 @@ class FileStorage():
                 json_str = file.read()
                 if len(json_str) > 0:
                     json_dict = json.loads(json_str)
+                    self.__objects.clear()
                     for k, obj_dict in json_dict.items():
                         self.__objects[k] = BaseModel(**obj_dict)
