@@ -3,6 +3,9 @@
 import json
 import os
 
+classes = {'BaseModel': BaseModel, 'State': State, 'City': City,
+        'Amenity': Amenity, 'Place': Place, 'Review': Review}
+
 class FileStorage():
     """ FileStorage class"""
 
