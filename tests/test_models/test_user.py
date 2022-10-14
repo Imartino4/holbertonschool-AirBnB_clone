@@ -14,13 +14,11 @@ class TestUser(unittest.TestCase):
         obj1 = User()
         self.assertEqual(type(obj1.id), str)
 
-    def test_attribute(self):
-        """Test adding value an attribute"""
-        obj1 = User()
-        obj1.email = "hola@hbnb.com"
-        for k, v in obj1.__dict__.items():
-            if k == 'email':
-                obj_val = v
-        self.assertEqual(obj_val, 'hola@hbnb.com')
-
+    def test_type_attributes(self):
+        """Check attributes type """
+        obj2 = User()
+        self.assertTrue(hasattr(obj2, 'email'))
+        self.assertTrue(hasattr(obj2, 'password'))
+        self.assertTrue(hasattr(obj2, 'first_name'))
+        self.assertTrue(hasattr(obj2, 'last_name'))
 
