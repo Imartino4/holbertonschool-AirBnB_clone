@@ -13,7 +13,7 @@ class TestUser(unittest.TestCase):
         obj1 = User()
         self.assertEqual(type(obj1.id), str)
 
-    def test_has_attributes(self):
+    def test_user_email(self):
         """Check attributes type """
         obj2 = User()
         self.assertTrue(hasattr(obj2, 'email'))
