@@ -35,17 +35,17 @@ class FileStorage():
         """ This method serialize an object to JSON file"""
         with open(self.__file_path, 'w') as file:
             json_dict = {}
-            for k, v in self.__objects.items():
-                json_dict[k] = v.to_dict()
+            for k, obj in self.__objects.items():
+                json_dict[k] = obj.to_dict()
             file.write(json.dumps(json_dict))
 
     def reload(self):
         """ This method deserializes an Json file to an object """
+        self.__objects.clear()
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r') as file:
                 json_str = file.read()
                 if len(json_str) > 0:
                     json_dict = json.loads(json_str)
-                    self.__objects.clear()
                     for k, obj_dict in json_dict.items():
                         self.__objects[k] = classes[k[:-37]](**obj_dict)
