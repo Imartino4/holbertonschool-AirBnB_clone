@@ -10,4 +10,4 @@ class TestReview(unittest.TestCase):
     def test_has_attributes(self):
         """Check attributes type """
         review = Review()
-        self.assertEqual(type(review.id), str)
+        self.assertEqual(type(review.text), str)
