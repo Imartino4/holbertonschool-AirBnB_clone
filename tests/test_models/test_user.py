@@ -23,6 +23,6 @@ class TestUser(unittest.TestCase):
         self.assertEqual(type(user.last_name), str)
 
     def test_user_password(self):
-        """ Check attributes type """
+        """ Check attribute type """
         user = User()
         self.assertEqual(type(user.password), str)
