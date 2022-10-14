@@ -13,12 +13,8 @@ class TestCity(unittest.TestCase):
         obj1 = City()
         self.assertEqual(type(obj1.id), str)
 
-    def test_attribute(self):
-        """Test adding value an attribute"""
+    def test_has_attributes(self):
+        """Check attributes type """
         obj2 = City()
-        obj2.name = "Montevideo"
-        for k, v in obj2.__dict__.items():
-            if k == 'name':
-                obj_val = v
-        self.assertEqual(obj_val, 'Montevideo')
-
+        self.assertTrue(hasattr(obj2, 'state_id'))
+        self.assertTrue(hasattr(obj2, 'name'))

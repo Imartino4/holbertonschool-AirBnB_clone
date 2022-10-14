@@ -13,12 +13,7 @@ class TestAmenity(unittest.TestCase):
         obj1 = Amenity()
         self.assertEqual(type(obj1.id), str)
 
-    def test_attribute(self):
-        """Test adding value an attribute"""
+    def test_has_attributes(self):
+        """Check attributes type """
         obj2 = Amenity()
-        obj2.name = "Spa"
-        for k, v in obj2.__dict__.items():
-            if k == 'name':
-                obj_val = v
-        self.assertEqual(obj_val, 'Spa')
-
+        self.assertTrue(hasattr(obj2, 'name'))

@@ -13,12 +13,9 @@ class TestPlace(unittest.TestCase):
         obj1 = Review()
         self.assertEqual(type(obj1.id), str)
 
-    def test_attribute(self):
-        """Test adding value an attribute"""
+    def test_has_attributes(self):
+        """Check attributes type """
         obj2 = Review()
-        obj2.text = "Everything good"
-        for k, v in obj2.__dict__.items():
-            if k == 'text':
-                obj_val = v
-        self.assertEqual(obj_val, 'Everything good')
-
+        self.assertTrue(hasattr(obj2, 'text'))
+        self.assertTrue(hasattr(obj2, 'user_id'))
+        self.assertTrue(hasattr(obj2, 'place_id'))

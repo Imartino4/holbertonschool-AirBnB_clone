@@ -13,15 +13,17 @@ class TestPlace(unittest.TestCase):
         obj1 = Place()
         self.assertEqual(type(obj1.id), str)
 
-    def test_attribute(self):
-        """Test adding value an attribute"""
+    def test_has_attributes(self):
+        """Check attributes type """
         obj2 = Place()
-        obj2.name = "Parque Central"
-        obj2.number_rooms = 30000
-        for k, v in obj2.__dict__.items():
-            if k == 'name':
-                obj_val = v
-        self.assertEqual(obj_val, 'Parque Central')
-        self.assertTrue(type(obj2.number_rooms) == int)
-
-
+        self.assertTrue(hasattr(obj2, 'city_id'))
+        self.assertTrue(hasattr(obj2, 'user_id'))
+        self.assertTrue(hasattr(obj2, 'name'))
+        self.assertTrue(hasattr(obj2, 'description'))
+        self.assertTrue(hasattr(obj2, 'number_rooms'))
+        self.assertTrue(hasattr(obj2, 'number_bathrooms'))
+        self.assertTrue(hasattr(obj2, 'max_guest'))
+        self.assertTrue(hasattr(obj2, 'price_by_night'))
+        self.assertTrue(hasattr(obj2, 'latitude'))
+        self.assertTrue(hasattr(obj2, 'longitude'))
+        self.assertTrue(hasattr(obj2, 'amenity_ids'))
