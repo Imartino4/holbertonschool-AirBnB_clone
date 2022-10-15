@@ -7,6 +7,8 @@ from models.base_model import BaseModel
 from models import user, state, city, amenity, place, review
 from models import storage
 
+# Classes dictionary storing keys with classes
+# names in strings and values with  the actual class.
 classes = {
     'BaseModel': BaseModel,
     'User': user.User,
@@ -19,6 +21,11 @@ classes = {
 
 
 def class_check(input_str):
+    """
+        Validates:
+            - input_str is non empty
+            - input_str refers to an existing class
+    """
     input = input_str.split()
     if len(input_str) == 0:
         print("** class name missing **")
@@ -30,6 +37,11 @@ def class_check(input_str):
 
 
 def id_check(input_str):
+    """
+        Validates:
+            - input_str contains an id
+            - id exists in storage
+    """
     input = input_str.split()
     try:
         id = input[1]
@@ -110,7 +122,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """
-            Update an instance, adding new attribute or create one
+            Update an instance's attribute or create new one.
             Usage: update <class name> <id> <attribute> <value_attribute>
         """
         args = shlex.split(arg)
@@ -125,11 +137,21 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
 
     def default(self, arg):
-        if arg[:-6] in classes.keys():
-            if 'all' in arg:
-                self.do_all(arg[:-6])
+        """
+            Custom default function for other misc commands
+        """
+        args = arg.split(".")
+        if len(args) == 2 and class_check(args[0]):
+            clase = args[0]
+            method = args[1]
+
+            if 'all()' == method:
+                self.do_all(clase)
             else:
-                print("*** Unknown syntax: algo")
+                print(f"*** Unknwon method {method} for class: {clase}")
+        else:
+            print(f"*** Unknown syntax: {arg}")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
