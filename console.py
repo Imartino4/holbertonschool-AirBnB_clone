@@ -138,7 +138,7 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, arg):
         """
-            Custom default function for other misc commands
+            Custom default function for other miscellaneous commands
         """
         args = arg.split(".")
         if len(args) == 2 and class_check(args[0]):
