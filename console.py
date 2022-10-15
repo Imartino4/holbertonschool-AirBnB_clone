@@ -133,6 +133,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
             else:
                 obj = storage.all()[f"{args[0]}.{args[1]}"]
+                if args[3].isnumeric():
+                    args[3] = int(args[3])
                 setattr(obj, args[2], args[3])
                 storage.save()
 
@@ -159,6 +161,17 @@ class HBNBCommand(cmd.Cmd):
             elif 'destroy' in method:
                 obj_id = args[1][9:-2]
                 self.do_destroy(f"{args[0]} {obj_id}")
+            elif 'update' in method:
+                list_aux = args[1].split(', ')
+                obj_id = list_aux[0][8:-1]
+                print(obj_id)
+                attr = list_aux[1][1:-1]
+                print(attr)
+                attr_val = list_aux[2][:-1]
+                print(attr_val)
+                if attr_val[0] == '"':
+                    attr_val = attr_val[1:-1]
+                self.do_update(f"{clase} {obj_id} {attr} {attr_val}")
             else:
                 print(f"*** Unknwon method {method} for class: {clase}")
         else:
