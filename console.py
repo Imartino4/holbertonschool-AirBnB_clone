@@ -153,6 +153,10 @@ class HBNBCommand(cmd.Cmd):
                     if obj.__class__.__name__ == clase:
                         count += 1
                 print(count)
+            elif 'show' in method:
+                obj_id = args[1][6:-2]
+                print(obj_id)
+                self.do_show(f"{args[0]} {obj_id}")
             else:
                 print(f"*** Unknwon method {method} for class: {clase}")
         else:
