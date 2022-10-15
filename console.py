@@ -155,8 +155,10 @@ class HBNBCommand(cmd.Cmd):
                 print(count)
             elif 'show' in method:
                 obj_id = args[1][6:-2]
-                print(obj_id)
                 self.do_show(f"{args[0]} {obj_id}")
+            elif 'destroy' in method:
+                obj_id = args[1][9:-2]
+                self.do_destroy(f"{args[0]} {obj_id}")
             else:
                 print(f"*** Unknwon method {method} for class: {clase}")
         else:
