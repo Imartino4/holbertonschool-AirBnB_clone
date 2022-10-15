@@ -140,6 +140,7 @@ class HBNBCommand(cmd.Cmd):
         """
             Custom default function for other miscellaneous commands
         """
+        count = 0
         args = arg.split(".")
         if len(args) == 2 and class_check(args[0]):
             clase = args[0]
@@ -147,6 +148,11 @@ class HBNBCommand(cmd.Cmd):
 
             if 'all()' == method:
                 self.do_all(clase)
+            elif 'count()' == method:
+                for obj in storage.all().values():
+                    if obj.__class__.__name__ == clase:
+                        count += 1
+                print(count)
             else:
                 print(f"*** Unknwon method {method} for class: {clase}")
         else:
