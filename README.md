@@ -1,19 +1,29 @@
-<h1> HBnB - AirBnB clone </h1>
+<h1 align = "center"> HBnB - AirBnB clone </h1>
+
+
+<p align = "center"> <img src="https://user-images.githubusercontent.com/102921918/195964129-5ceba7c0-69be-498a-ac89-41b4cd5cc210.png" /></p>
 
 <h2> Description of the project </h2>
-<p>The aim of this project is to replicate the Airbnb's web application</p>
-<p>During this first step we write the BaseModel class which takes care of the initialization and the update of
+<p>The aim of this project is to replicate the Airbnb's web application, it will be implemented in Python.</p>
+<p>During this first step the BaseModel class was created which takes care of the initialization and the update of
 the instances. This class is also the parent class of other classes needed to the web funcionality, which are: User, State, City, Place, Amenity and Review.</p>
-<p>We also make command interpreter to manage all the neccesary objects. </p>
+<p> The FileStorage class has the methods to save the created objects in a JSON file to keep them once the program ends and can be reloaded when the program restarts.
+<p>The command interpreter was also made to manage all the neccesary objects. This console was created using the cmd class provided by python </p>
+<br>
 
 <h2> Command interpreter </h2>
-<p> Besides the typical commands like quit, help and EOF, this console was customized to works with different commands to create and modifify 
+<p>A command interpreter was made to manage all the neccesary objects. This console was created using the cmd class provided by python </p>
+<p>Besides the typical commands like quit, help and EOF, this console was customized to works with different commands to create and modifify 
 objects of the different classes.</p>
-<p>creates - initialize a new class and print the corresponding id.<pre><code>create 'classname'</code></pre> </p>
-<p>show - prints the string representation of the instance. <pre><code>show 'classname' 'id'</code></pre></p>
-<p>destroy - deletes an instance. <pre><code>destroy 'classname'  'id'</code></pre> </p>
-<p>all - print the string representation of all instances or a specific class instance. <pre><code>all 'classname'  ||  all</pre></code></p>
-<p>update - update an instance, adding or updating a specific attribute<pre><code> update 'classname'  'id'  'attribute_name'  'attribute_value'</code></pre></p>
+<p> To run the console is needed to execute the console.py file.</p><br>
+Commands:
+<ul>
+<p><li><stroncreates - initialize a new class and print the corresponding id.</li><br><pre><code >create 'classname'</code></pre> </p>
+<p><li>show - prints the string representation of the instance.</li><br> <pre><code>show 'classname' 'id'</code></pre></p>
+<p><li>destroy - deletes an instance.</li> <br><pre><code>destroy 'classname'  'id'</code></pre> </p>
+<p><li>all - print the string representation of all instances or a specific class instance.</li><br> <pre><code>all 'classname'  ||  all</pre></code></p>
+<p><li>update - update an instance, adding or updating a specific attribute</li><br><pre><code> update 'classname'  'id'  'attribute_name'  'attribute_value'</code></pre></p></ul>
+<br>
 
 <h2>Example</h2>
 <pre><code>
@@ -44,3 +54,70 @@ bdd5d584-f64f-459a-a426-b47ff0156758
 (hbnb)quit
 root@aba1ef7f7e57:~/holbertonschool-AirBnB_clone#
 </code></pre>
+<br>
+<h2> File contents </h2>
+
+<table>
+<tr>
+  <td><strong>Name of file</strong></td>
+  <td><strong>Description</strong></td>
+</tr>
+<tr>
+  <td>README.md</td>
+  <td>Description of program</td>
+</tr>
+<tr>
+  <td>/models/base_model.py</td>
+  <td>BaseModel class: it is the parent class</td>   
+</tr>
+  
+<tr>
+  <td>/models/user.py</td>
+  <td>User class inherits from BaseModel</td>   
+</tr>
+
+<tr>
+  <td>/models/state.py</td>
+  <td>State class, inherits from BaseModel</td>   
+</tr>
+
+<tr>
+  <td>/models/city.py</td>
+  <td>City class, inherits from BaseModel</td>   
+</tr>
+  
+<tr>
+  <td>/models/amenity.py</td>
+  <td>Amenity class, inherits from BaseModel</td>   
+</tr>
+
+<tr>
+  <td>/models/place.py</td>
+  <td>Place class, inherits from BaseModel</td>   
+</tr>
+
+<tr>
+  <td>/models/review.py</td>
+  <td>Review class, inherits from BaseModel</td>   
+</tr>
+
+<tr>
+  <td>/models/engine/file_storage.py</td>
+  <td>FileStorage module: contains FileStorage class which has the methods to serializate and deserializate a JSON file</td>
+  </tr>
+  
+  <tr>
+  <td>/tests</td>
+  <td>This directory contains all unittest to to ensure the performance</td>   
+</tr>
+  
+<tr>
+  <td>console.py</td>
+  <td>Conmmand interpeter to manage the objects</td>   
+</tr>
+ 
+</table>
+<br>
+<h2> Authors </h2>
+Blas Hernández - <a href="https://github.com/blashernandez98"> blashernandez98 </a></p>
+Ignacio Martino - <a href="https://github.com/Imartino4"> Imartino4 </a></p>
