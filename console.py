@@ -172,11 +172,9 @@ class HBNBCommand(cmd.Cmd):
                     attr_val = attr_val[1:-1]
                 self.do_update(f"{clase} {obj_id} {attr} {attr_val}")
             elif 'update' in method and '{' in method:
-                list_aux = args[1][47:-1]
-                obj_id = args[1][8:44]
-                print(obj_id)
-                print(list_aux)
-                dic = ast.literal_eval(list_aux)
+                obj_id = method.split('"')[1]
+                dic = method[11+len(obj_id):-1]
+                dic = ast.literal_eval(dic)
                 for k, v in dic.items():
                     self.do_update(f"{clase} {obj_id} {k} {v}")
             else:
