@@ -6,6 +6,8 @@ import shlex
 from models.base_model import BaseModel
 from models import user, state, city, amenity, place, review
 from models import storage
+import json
+import ast
 
 # Classes dictionary storing keys with classes
 # names in strings and values with  the actual class.
@@ -161,17 +163,22 @@ class HBNBCommand(cmd.Cmd):
             elif 'destroy' in method:
                 obj_id = args[1][9:-2]
                 self.do_destroy(f"{args[0]} {obj_id}")
-            elif 'update' in method:
+            elif 'update' in method and '{' not in method:
                 list_aux = args[1].split(', ')
                 obj_id = list_aux[0][8:-1]
-                print(obj_id)
                 attr = list_aux[1][1:-1]
-                print(attr)
                 attr_val = list_aux[2][:-1]
-                print(attr_val)
                 if attr_val[0] == '"':
                     attr_val = attr_val[1:-1]
                 self.do_update(f"{clase} {obj_id} {attr} {attr_val}")
+            elif 'update' in method and '{' in method:
+                list_aux = args[1][47:-1]
+                obj_id = args[1][8:44]
+                print(obj_id)
+                print(list_aux)
+                dic = ast.literal_eval(list_aux)
+                for k, v in dic.items():
+                    self.do_update(f"{clase} {obj_id} {k} {v}")
             else:
                 print(f"*** Unknwon method {method} for class: {clase}")
         else:
