@@ -7,18 +7,17 @@
 <p>The aim of this project is to replicate the Airbnb's web application, it will be implemented in Python.</p>
 <p>During this first step the BaseModel class was created which takes care of the initialization and the update of
 the instances. This class is also the parent class of other classes needed to the web funcionality, which are: User, State, City, Place, Amenity and Review.</p>
-<p> The FileStorage class has the methods to save the created objects in a JSON file to keep them once the program ends and can be reloaded when the program restarts.
-<p>The command interpreter was also made to manage all the neccesary objects. This console was created using the cmd class provided by python </p>
+<p> The FileStorage class has the methods to save the created objects in a JSON file to keep them once the program ends which could be reloaded when the program restarts.
 <br>
 
 <h2> Command interpreter </h2>
-<p>A command interpreter was made to manage all the neccesary objects. This console was created using the cmd class provided by python </p>
+<p>A command interpreter was made to manage all the neccesary objects. This console was created using the cmd class provided by python. </p>
 <p>Besides the typical commands like quit, help and EOF, this console was customized to works with different commands to create and modifify 
 objects of the different classes.</p>
 <p> To run the console is needed to execute the console.py file.</p><br>
 Commands:
 <ul>
-<p><li><stroncreates - initialize a new class and print the corresponding id.</li><br><pre><code >create 'classname'</code></pre> </p>
+<p><li>creates - initialize a new class and print the corresponding id.</li><br><pre><code >create 'classname'</code></pre> </p>
 <p><li>show - prints the string representation of the instance.</li><br> <pre><code>show 'classname' 'id'</code></pre></p>
 <p><li>destroy - deletes an instance.</li> <br><pre><code>destroy 'classname'  'id'</code></pre> </p>
 <p><li>all - print the string representation of all instances or a specific class instance.</li><br> <pre><code>all 'classname'  ||  all</pre></code></p>
@@ -28,8 +27,12 @@ Commands:
 <h2>Example</h2>
 <pre><code>
 root@aba1ef7f7e57:~/holbertonschool-AirBnB_clone# ./console.py
+
+
 (hbnb)create City
 bdd5d584-f64f-459a-a426-b47ff0156758
+
+
 
 (hbnb)show City bdd5d584-f64f-459a-a426-b47ff0156758
 [City] (bdd5d584-f64f-459a-a426-b47ff0156758) {'id': 'bdd5d584-f64f-459a-a426-b47ff0156758', 'created_at': datetime.datetime(2022, 10, 14, 9, 20, 51, 172752), 'updated_at': datetime.datetime(2022, 10, 14, 9, 20, 51, 172764)}
@@ -55,6 +58,57 @@ bdd5d584-f64f-459a-a426-b47ff0156758
 root@aba1ef7f7e57:~/holbertonschool-AirBnB_clone#
 </code></pre>
 <br>
+
+<h2> Improving the console funcionality</h2>
+<p> To improve the usability of the console, differents commands were added to list, count, show, destroy and update different instances, 
+ using the method call syntax of classes:</p>
+ <p>Examples</p>
+ <pre><code>
+ root@aba1ef7f7e57:~/holbertonschool-AirBnB_clone# ./console.py
+ 
+ 
+(hbnb)create BaseModel
+2d176077-19c4-4d8e-b781-0b23af66b1ad
+
+(hbnb)create User
+a98d1ce8-3f9c-400e-9027-97bbfd7b41e5
+
+(hbnb)all
+["[BaseModel] (2d176077-19c4-4d8e-b781-0b23af66b1ad) {'id': '2d176077-19c4-4d8e-b781-0b23af66b1ad', 'created_at': datetime.datetime(2022, 10, 17, 5, 54, 2, 185981), 'updated_at': datetime.datetime(2022, 10, 17, 5, 54, 2, 186010)}",
+"[User] (a98d1ce8-3f9c-400e-9027-97bbfd7b41e5) {'id': 'a98d1ce8-3f9c-400e-9027-97bbfd7b41e5', 'created_at': datetime.datetime(2022, 10, 17, 5, 54, 59, 745061), 'updated_at': datetime.datetime(2022, 10, 17, 5, 54, 59, 745076)}"]
+
+(hbnb)User.all()
+["[User] (a98d1ce8-3f9c-400e-9027-97bbfd7b41e5) {'id': 'a98d1ce8-3f9c-400e-9027-97bbfd7b41e5', 'created_at': datetime.datetime(2022, 10, 17, 5, 54, 59, 745061), 'updated_at': datetime.datetime(2022, 10, 17, 5, 54, 59, 745076)}"]
+
+(hbnb)create User
+95a57602-a569-4deb-b36b-4ccd6a623da2
+
+(hbnb)User.count()
+2
+
+(hbnb)BaseModel.count()
+1
+
+(hbnb)User.show("a98d1ce8-3f9c-400e-9027-97bbfd7b41e5")
+[User] (a98d1ce8-3f9c-400e-9027-97bbfd7b41e5) {'id': 'a98d1ce8-3f9c-400e-9027-97bbfd7b41e5', 'created_at': datetime.datetime(2022, 10, 17, 5, 54, 59, 745061), 'updated_at': datetime.datetime(2022, 10, 17, 5, 54, 59, 745076)}
+
+(hbnb)User.destroy("a98d1ce8-3f9c-400e-9027-97bbfd7b41e5")
+
+(hbnb)User.count()
+1
+
+(hbnb)create Place
+e6524aa0-b40d-4390-9ab1-aa370a772097
+
+(hbnb)Place.show("e6524aa0-b40d-4390-9ab1-aa370a772097")
+[Place] (e6524aa0-b40d-4390-9ab1-aa370a772097) {'id': 'e6524aa0-b40d-4390-9ab1-aa370a772097', 'created_at': datetime.datetime(2022, 10, 17, 6, 9, 34, 95572), 'updated_at': datetime.datetime(2022, 10, 17, 6, 9, 34, 96556)}
+
+(hbnb)Place.update("e6524aa0-b40d-4390-9ab1-aa370a772097", "place_name", "Montevideo")
+
+(hbnb)Place.show("e6524aa0-b40d-4390-9ab1-aa370a772097")
+[Place] (e6524aa0-b40d-4390-9ab1-aa370a772097) {'id': 'e6524aa0-b40d-4390-9ab1-aa370a772097', 'created_at': datetime.datetime(2022, 10, 17, 6, 9, 34, 95572), 'updated_at': datetime.datetime(2022, 10, 17, 6, 9, 34, 96556), 'place_name': 'Montevideo'}
+
+</code></pre>  
 <h2> File contents </h2>
 
 <table>
