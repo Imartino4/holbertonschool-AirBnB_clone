@@ -1,21 +1,22 @@
 .filters{
+    display: flex;
     background-color: white;
     height: 70px;
     width: 100%;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
-    /*Si hago el display flex para centrar despues no puedo darle margin-right*/
+    align-items: center;
 }
 .filters button{
-    font-size: 18px;
-    background-color: #FF5A5F;
-    color: #FFFFFF;
-    height: 48px;
-    width: 20%;
-    border: none;
-    border-radius: 4px;
-    float: right;
-    margin: 11px 30px; /*Centrado verticalmente sacando las medidas -- otra forma?*/
+position: absolute;
+font-size: 18px;
+background-color:  #FF5A5F;
+color: #FFFFFF;
+height: 48px;
+width: 20%;
+border-style: none;
+border-radius: 4px;
+right: 30px;
 }
 
 .filters button:hover{
@@ -25,9 +26,7 @@
 .filters .locations, .filters .amenities{
     height: 100%;
     width: 25%;
-    display: inline-block;/*Los elementos inline los paso a bloque y me quedan en la misma linea*/
     margin-left: 50px;
-
 }
 
 .filters .locations{
@@ -36,7 +35,6 @@
 
 .filters .locations h3, .filters .amenities h3{
     font-weight: 600 ;
-
 }
 .filters .locations h4, .filters .amenities h4{
     font-weight: 400;
@@ -44,9 +42,41 @@
     margin-top:-10px; /*Para subir h4 con respecto a h3*/
 }
 
-.filters .locations:hover{
-    background-color: #c0c0c0;
+.filters .locations .popover, .filters .amenities .popover{
+    position: absolute;
+    display: none;
+    overflow: auto;
 }
-.filters .amenities:hover{
-    background-color: #c0c0c0;
+
+.filters .locations:hover .popover{
+    display: block;
+    list-style: none;
+    background-color: #FAFAFA;
+    border: solid 1px #DDDDDD;
+    border-radius: 4px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 25%;
+    margin-top: 0;
+    left: 0;
+}
+.filters .amenities:hover .popover{
+    display: block;
+    list-style: none;
+    background-color: #FAFAFA;
+    border: solid 1px #DDDDDD;
+    border-radius: 4px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 25%;
+    margin-top: 0;
+    margin-left: 25;
+}
+
+.filters .locations:hover .popover li{
+    list-style: none;
+}
+
+.filters .locations:hover .popover h2{
+    font-size: 16px;
 }
